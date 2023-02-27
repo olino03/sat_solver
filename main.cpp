@@ -54,6 +54,7 @@ int main(int argc, char **argv)
             throw "Input file not found";
         if(output.fail())
             throw "Can't create output file";
+        ClauseSet clauses = parse_input(input);
         
     }
     catch(const std::exception& e)

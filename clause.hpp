@@ -7,16 +7,17 @@
 
 class Clause
 {
-    private:
-        std::vector<Literal> mLiterals;
+    std::vector<Literal> mLiterals;
     public:
         Clause() = default;
         Clause(std::vector<Literal> &literals);
         void Insert(const Literal &it);
         int Find (const Literal &it) const;
         int FindNegated(const Literal &it) const;
+        size_t Size() const;
         Clause ResolveClause(const Clause &second);
         friend bool operator==(const Clause &first, const Clause &second);
+        Literal& at(const size_t index);
 };
 
 Clause::Clause(std::vector<Literal> &literals)
@@ -76,7 +77,32 @@ bool operator==(const Clause &first, const Clause &second)
     return true;
 }
 
-Clause Clause::ResolveClause(const Clause &second)
+Literal& Clause::at(const size_t index)
 {
-    
+    return mLiterals[index];
+}
+
+size_t Clause::Size() const
+{
+    return this->mLiterals.size();
+}
+
+class ResultClause : private Clause
+{
+    bool bValid = true;
+    public:
+        ResultClause PropositionalResolvant(Clause &second);
+};
+
+ResultClause ResultClause::PropositionalResolvant(Clause &second)
+{
+    std::vector<Literal> complementaries;
+    for(size_t i = 0; i < this->Size(); i++)
+    {
+        for(size_t j = 0; j < second.Size(); j++)
+        {
+            if(this->at(i).IsComplementary(second.at(j)))
+                
+        }
+    }
 }

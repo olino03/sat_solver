@@ -7,16 +7,15 @@
 
 class Literal
 {
-    private:
-        bool mNegated = false;
-        char mName = ' ';
+    bool mNegated = false;
+    char mName = ' ';
     public:
         bool getNegated() const;
         char getName() const;
         void setNegated(const bool negated);
         void setName(const char name);
         bool IsComplementary(const Literal *other) const;
-        bool ValidName(const char name);
+        static bool ValidName(const char name);
         Literal(const bool negated, const char name);
         Literal Negate();
         friend bool operator==(const Literal &first, const Literal &second);
