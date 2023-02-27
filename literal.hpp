@@ -16,6 +16,7 @@ class Literal
         void setNegated(const bool negated);
         void setName(const char name);
         bool IsComplementary(const Literal *other) const;
+        bool ValidName(const char name);
         Literal(const bool negated, const char name);
         Literal Negate();
         friend bool operator==(const Literal &first, const Literal &second);
@@ -68,4 +69,11 @@ void Literal::setNegated(const bool negated)
 void Literal::setName(const char name)
 {
     mName = name;
+}
+
+bool Literal::ValidName(const char name)
+{
+    if(name > 'A' && name < 'Z')
+        return true;
+    return false;
 }

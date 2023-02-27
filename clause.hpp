@@ -10,6 +10,7 @@ class Clause
     private:
         std::vector<Literal> mLiterals;
     public:
+        Clause() = default;
         Clause(std::vector<Literal> &literals);
         void Insert(const Literal &it);
         int Find (const Literal &it) const;
